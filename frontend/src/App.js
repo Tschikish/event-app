@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React with Čuča and Maki, što vam kevu safti
         </a>
       </header>
     </div>
