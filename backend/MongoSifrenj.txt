@@ -1,3 +1,0 @@
-G75MaBMm4zrwKMoe
-
-mongodb+srv://milutinfreelance:G75MaBMm4zrwKMoe@klasteraki.wxjzqjk.mongodb.net/?retryWrites=true&w=majority&appName=Klasteraki
