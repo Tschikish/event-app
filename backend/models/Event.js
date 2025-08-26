@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema({
     date: { type: Date,},
     description: { type: String, },
     location: { type: String, },
-
+    
 });
 
 export default mongoose.model("Event", EventSchema);
