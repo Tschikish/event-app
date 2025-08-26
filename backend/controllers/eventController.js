@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 
 
 export async function pushEvent(req, res) {
-  
+
   try {
 
     const event = new Event({
-      pictureID: "00000001",
-      title: "Burekdzijada",
+      pictureID: req.body.pictureID,
+      title: req.body.title,
       date: new Date(),
-      description: "Ovde se bureci krkaju i brste, zavisno od preferencije",
-      location: "De stignes, samo s prsti"
+      description: req.body.description,
+      location: req.body.location
     })
 
     console.log(mongoose.connection.name, " <- DB name");

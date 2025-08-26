@@ -3,6 +3,6 @@ import { pushEvent } from "../controllers/eventController.js";
 
 const router = express.Router();
 
-router.get("/", pushEvent);
+router.post("/", pushEvent);
 
 export default router;
