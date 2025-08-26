@@ -23,6 +23,7 @@ import User from "../models/User.js";
 } */
 
 export async function getUser(req, res) {
+  
   try {
     const user = await User.findOne();
 
@@ -33,7 +34,10 @@ export async function getUser(req, res) {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.json(user);
-  } catch (err) {
+  } 
+  
+  catch (err) {
     res.status(500).json({ error: err.message });
   }
+
 }
