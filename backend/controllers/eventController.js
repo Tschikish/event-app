@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 // Trenutno pushEvent i deleteEvent rade, fetchEvent i fetchEventAny su samo za testiranje i ne koriste se
 export async function pushEvent(req, res) {
-  
+
   try {
 
     const event = new Event({
