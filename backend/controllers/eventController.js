@@ -114,7 +114,7 @@ export async function postDefaultEvent(req, res) {
          .catch(err => console.error('Error saving default event:', err));
     //if (!user) return res.status(404).json({ message: "User not found" });
 
-    res.json("Default event posted);
+    res.json("Default event posted");
   }
 
   catch (err) {
