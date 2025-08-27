@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "../styles/HomePage.css";
+import "../styles/Header.css";
 
 
 function Header() {
@@ -16,18 +16,15 @@ function Header() {
   };
 
   return (
-    <header>
-      <nav>
+    <header className="header">
         <ul>
-          <li>
-            <Link to="/">Home</Link>
+          <li className="levi-link">
+            <Link to="/">HOME</Link>
           </li>
           <li>
-            <Link to="/events">Dešavanja</Link>
+            <Link to="/events">EVENTS</Link>
           </li>
-          <li></li>
         </ul>
-      </nav>
     </header>
   );
 }

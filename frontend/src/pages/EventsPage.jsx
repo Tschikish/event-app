@@ -1,5 +1,7 @@
 import Header from "../partials/Header";
 import { useState, useEffect } from "react";
+import "../styles/EventsPage.css";
+
 
 function EventsPage() {
 
@@ -25,16 +27,15 @@ function EventsPage() {
   useEffect(() => {
     getAllEvents();
   }, []);
-  console.log(events);
 
   return (
     <div>
       <Header />
-      <section>
-        <h1>Events</h1>
+      <section className="events-section">
+        <h1 className="event-header">Events</h1>
         {events.length === 0 && <p>No events found.</p>}
         {events.map((ev) => (
-          <div key={ev._id} style={{ border: "1px solid #ccc", padding: "1rem", marginBottom: "1rem" }}>
+          <div key={ev._id} className="event-card" style={{ border: "1px solid #ccc", padding: "1rem", marginBottom: "1rem" }}>
             <h2>{ev.title}</h2>
             <p>{ev.description}</p>
             <p><strong>Location:</strong> {ev.location}</p>

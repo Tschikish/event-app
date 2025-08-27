@@ -1,0 +1,25 @@
+.events-section {
+    display: flex;
+    flex-direction: column;
+    
+    background: #f0f0f0;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 20vw;
+}
+.event-header {
+    width: 100px;
+    align-self: center;
+}
+.event-card {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    align-items: center;
+    border: 1px solid #ccc;
+    background: white;
+    box-shadow: 0 0 20px 2px rgb(213, 213, 213);
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
