@@ -116,23 +116,20 @@ export async function fetchEvents(req, res) {
 }
 
 export async function fetchAllEvents(req, res) {
-  
   try {
-
     console.log(mongoose.connection.name, " <- DB name");
 
-    Event.find().then(events => res.json(events))
-         .catch(err => console.error('Error fetching events:', err));
+    // Wait for the query result
+    const events = await Event.find();
 
-    //if (!user) return res.status(404).json({ message: "User not found" });
+    console.log(events, " <- all events");
 
-    res.json("Events fetched");
-  }
-
-  catch (err) {
+    // Send the events as JSON
+    res.json(events);
+  } catch (err) {
+    console.error("Error fetching events:", err);
     res.status(500).json({ error: err.message });
   }
-
 }
 
 export async function postDefaultEvent(req, res) {
