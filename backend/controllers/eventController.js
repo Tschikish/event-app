@@ -1,7 +1,6 @@
 import Event from "../models/Event.js";
 import mongoose from "mongoose";
 
-// Trenutno pushEvent i deleteEvent rade, fetchEvent i fetchEventAny su samo za testiranje i ne koriste se
 export async function pushEvent(req, res) {
 
   try {
@@ -14,7 +13,8 @@ export async function pushEvent(req, res) {
       location: req.body.location
     })
 
-    console.log(mongoose.connection.name, " <- DB name");
+    console.log(mongoose.connection.name, " <- DB name // event pushed:");
+    console.log(event);
 
     event.save().then(() => console.log('Event saved'))
          .catch(err => console.error('Error saving event:', err));
@@ -33,23 +33,22 @@ export async function pushEvent(req, res) {
 export async function pushMultipleEvents(req, res) {
   
   try {
+    const events = req.body;
 
-    const event = new Event({
-      pictureID: req.body.pictureID,
-      title: req.body.title,
-      date: new Date(),
-      description: req.body.description,
-      location: req.body.location
-    })
+    if (!Array.isArray(events) || events.length === 0) {
+      return res.status(400).json({ message: "Submitted data does not point to an array" });
+    }
 
+    mongoose.insertMany(events)
+      .then(() => console.log('Multiple events saved'))
+      .catch(err => console.error('Error saving multiple events:', err));
+
+    res.json({ message: `${events.length} events pushed successfully` });
     console.log(mongoose.connection.name, " <- DB name");
-
-    event.save().then(() => console.log('Event saved'))
-         .catch(err => console.error('Error saving event:', err));
 
     //if (!user) return res.status(404).json({ message: "User not found" });
 
-    res.json(event);
+    res.json(events);
   }
 
   catch (err) {
@@ -97,7 +96,7 @@ export async function fetchEvent(req, res) {
 
 }
 
-export async function fetchEventAny(req, res) {
+export async function postDefaultEvent(req, res) {
   
   try {
 
@@ -123,4 +122,19 @@ export async function fetchEventAny(req, res) {
     res.status(500).json({ error: err.message });
   }
 
+}
+
+export async function clearEventBase(req, res) {
+
+  try {
+    console.log(mongoose.connection.name.toString(), " <- DB name : clearing event database");
+
+    const result = await Event.deleteMany({});
+
+    console.log(`${result.deletedCount} events deleted from DB.`);
+    res.json({ message: "Event database cleared" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 }
