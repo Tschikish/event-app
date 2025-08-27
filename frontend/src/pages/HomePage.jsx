@@ -54,7 +54,7 @@ function HomePage() {
 
       <main style={{ maxWidth: 560, margin: "2rem auto" }}>
         <h1>Create Event</h1>
-        <form onSubmit={onSubmit}>
+        <form className="input-form" onSubmit={onSubmit}>
           <label>
             Picture ID
             <input

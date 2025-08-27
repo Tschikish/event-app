@@ -25,5 +25,5 @@ app.use('/api/events', eventRoutes);
 
 // Start server
 app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+  console.log(`\n Server running on port ${process.env.PORT}`);
 });
