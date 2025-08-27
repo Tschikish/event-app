@@ -110,12 +110,11 @@ export async function postDefaultEvent(req, res) {
 
     console.log(mongoose.connection.name, " <- DB name");
 
-    event.deleteOne().then(() => console.log('Event deleted'))
-         .catch(err => console.error('Error deleting event:', err));
-
+    event.save().then(() => console.log('Default event saved'))
+         .catch(err => console.error('Error saving default event:', err));
     //if (!user) return res.status(404).json({ message: "User not found" });
 
-    res.json("Event deleted");
+    res.json("Default event posted);
   }
 
   catch (err) {
