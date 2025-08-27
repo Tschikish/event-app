@@ -75,7 +75,6 @@ export async function deleteEvent(req, res) {
   }
 }
 
-
 export async function fetchEvent(req, res) {
   
   try {
@@ -88,6 +87,46 @@ export async function fetchEvent(req, res) {
     //if (!user) return res.status(404).json({ message: "User not found" });
 
     res.json("Event deleted");
+  }
+
+  catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+
+}
+
+export async function fetchEvents(req, res) {
+  
+  try {
+
+    console.log(mongoose.connection.name, " <- DB name");
+
+    event.deleteOne().then(() => console.log('Event deleted'))
+         .catch(err => console.error('Error deleting event:', err));
+
+    //if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json("Event deleted");
+  }
+
+  catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+
+}
+
+export async function fetchAllEvents(req, res) {
+  
+  try {
+
+    console.log(mongoose.connection.name, " <- DB name");
+
+    Event.find().then(events => res.json(events))
+         .catch(err => console.error('Error fetching events:', err));
+
+    //if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json("Events fetched");
   }
 
   catch (err) {

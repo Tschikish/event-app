@@ -1,9 +1,12 @@
 import express from "express";
-import { fetchEvent, pushEvent, pushMultipleEvents, postDefaultEvent } from "../controllers/eventController.js";
+import { fetchEvent, fetchEvents,  pushEvent, pushMultipleEvents, postDefaultEvent } from "../controllers/eventController.js";
 import { deleteEvent, clearEventBase } from "../controllers/eventController.js";
-import { ReturnDocument } from "mongodb";
 
 const router = express.Router();
+
+//Fetch
+router.get("/", fetchEvent);
+router.get("/all", fetchEvents);
 
 //push
 router.post("/push", pushEvent);
@@ -14,6 +17,5 @@ router.post("/default", postDefaultEvent);
 router.delete("/delete", deleteEvent);
 router.delete("/deleteAll", clearEventBase);
 
-router.get("/", fetchEvent);
 
 export default router;

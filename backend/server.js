@@ -22,12 +22,12 @@ app.use('/api/users', userRoutes);
 import eventRoutes from './routes/events.js';
 app.use('/api/events', eventRoutes);
 
-// Testing if clear db works
-// fetch('http://localhost:5000/api/events/default', { method: 'POST' })
-//   .then(response => response.json())
-//   .catch(err => console.error('Fetch error:', err));
-
 // Start server
 app.listen(process.env.PORT, () => {
   console.log(`\n Server running on port ${process.env.PORT}`);
 });
+
+// Testing if clear db works
+fetch('http://localhost:5000/api/events/default', { method: 'POST' })
+  .then(response => response.json())
+  .catch(err => console.error('Fetch error:', err));
