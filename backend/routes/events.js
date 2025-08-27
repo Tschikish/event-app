@@ -1,12 +1,12 @@
 import express from "express";
-import { fetchEvent, fetchEvents,  pushEvent, pushMultipleEvents, postDefaultEvent } from "../controllers/eventController.js";
+import { fetchEvent, fetchAllEvents,  pushEvent, pushMultipleEvents, postDefaultEvent } from "../controllers/eventController.js";
 import { deleteEvent, clearEventBase } from "../controllers/eventController.js";
 
 const router = express.Router();
 
 //Fetch
 router.get("/", fetchEvent);
-router.get("/all", fetchEvents);
+router.get("/all", fetchAllEvents);
 
 //push
 router.post("/push", pushEvent);
