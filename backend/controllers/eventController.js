@@ -81,14 +81,6 @@ export async function fetchEvent(req, res) {
   
   try {
 
-    const event = new Event({
-      pictureID: "00000001",
-      title: "Burekdzijada",
-      date: new Date(),
-      description: "Ovde se bureci krkaju i brste, zavisno od preferencije",
-      location: "De stignes, samo s prsti"
-    })
-
     console.log(mongoose.connection.name, " <- DB name");
 
     event.deleteOne().then(() => console.log('Event deleted'))

@@ -18,9 +18,9 @@ mongoose.connect(process.env.MONGO_URI)
 import userRoutes from './routes/users.js';
 app.use('/api/users', userRoutes);
 
+// Events
 import eventRoutes from './routes/events.js';
 app.use('/api/events', eventRoutes);
-
 
 
 // Start server
