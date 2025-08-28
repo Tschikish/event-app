@@ -1,0 +1,18 @@
+h1{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.profiles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+.profile-logo{
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+}
