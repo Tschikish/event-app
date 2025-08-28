@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Header.css";
 
-
 function Header() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
@@ -17,6 +16,8 @@ function Header() {
 
   return (
     <header className="header">
+      <img src="/logo.png" alt="no-logo" />
+      <nav>
         <ul>
           <li className="levi-link">
             <Link to="/">HOME</Link>
@@ -24,7 +25,11 @@ function Header() {
           <li>
             <Link to="/events">EVENTS</Link>
           </li>
+          <li>
+            <Link to="/about">ABOUT</Link>
+          </li>
         </ul>
+      </nav>
     </header>
   );
 }
