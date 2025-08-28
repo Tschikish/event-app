@@ -1,5 +1,5 @@
 import Event from "../models/Event.js";
-import mongoose from "mongoose";
+import mongoose, { Query } from "mongoose";
 
 export async function pushEvent(req, res) {
 
@@ -79,14 +79,23 @@ export async function fetchEvent(req, res) {
   
   try {
 
-    console.log(mongoose.connection.name, " <- DB name");
+    console.log(mongoose.connection.name, " <- DB name event fetch, trying to get you one event");
 
-    event.deleteOne().then(() => console.log('Event deleted'))
-         .catch(err => console.error('Error deleting event:', err));
+    const tempEvent = {}
 
-    //if (!user) return res.status(404).json({ message: "User not found" });
+    const {title, location, description} = req.body;
+    if (title) tempEvent.title = title;
+    if (location) tempEvent.location = location;  
+    if (description) tempEvent.description = description;
 
-    res.json("Event deleted");
+    console.log(tempEvent, " <- temp event filter");
+    const event = await Event.findOne(tempEvent);
+
+    // If no event is found, return 404
+    if (!event) return res.status(404).json({ message: "Event not found" });
+
+    res.json(event);
+
   }
 
   catch (err) {

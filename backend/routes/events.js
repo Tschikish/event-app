@@ -5,7 +5,7 @@ import { deleteEvent, clearEventBase } from "../controllers/eventController.js";
 const router = express.Router();
 
 //Fetch
-router.get("/", fetchEvent);
+router.get("/getone", fetchEvent);
 router.get("/all", fetchAllEvents);
 
 //push
