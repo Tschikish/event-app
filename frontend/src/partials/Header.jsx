@@ -2,21 +2,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Header.css";
 
-function Header() {
+function Header({ onSearch }) {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
-    // navigate to events page with query as URL param
-    navigate(`/events?search=${encodeURIComponent(query)}`);
+    // 🔥 call the callback passed from EventsPage
+    onSearch(query);
     setQuery("");
   };
 
   return (
     <header className="header">
-      <img src="/logo.png" alt="no-logo" />
+      <div className="logo">
+        <img  src="/logo.png" alt="no-logo" />
+        <Link to="/"></Link>
+      </div>
+
       <nav>
         <ul>
           <li className="levi-link">
@@ -30,6 +34,15 @@ function Header() {
           </li>
         </ul>
       </nav>
+      <form className="header-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search title..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button type="submit">🔍</button>
+      </form>
     </header>
   );
 }

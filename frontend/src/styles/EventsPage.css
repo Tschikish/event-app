@@ -8,7 +8,7 @@
     padding: 0 20vw;
 }
 .event-header {
-    width: 100px;
+    width: 200px;
     align-self: center;
 }
 .event-card {
@@ -22,4 +22,7 @@
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
+}
+.event-li{
+    list-style: none;
 }
