@@ -9,7 +9,7 @@ function EventsPage() {
 
   const getAllEvents = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/events/all", {
+      const res = await fetch("http://localhost:5000/api/events/getone", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

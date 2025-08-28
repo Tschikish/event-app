@@ -1,5 +1,6 @@
 import Event from "../models/Event.js";
 import mongoose, { Query } from "mongoose";
+import eventModel from "../models/Event.js";
 
 export async function pushEvent(req, res) {
 
@@ -78,24 +79,22 @@ export async function deleteEvent(req, res) {
 export async function fetchEvent(req, res) {
   
   try {
+    const {title, location, description} = req.query;
 
-    console.log(mongoose.connection.name, " <- DB name event fetch, trying to get you one event");
+    const filter = {};
+    filter.title = "Burekdzijada"; // Default title to search for
+    if (location) filter.location = location;
+    if (description) filter.description = description;
 
-    const tempEvent = {}
+    console.log(filter, " <- filter object");
 
-    const {title, location, description} = req.body;
-    if (title) tempEvent.title = title;
-    if (location) tempEvent.location = location;  
-    if (description) tempEvent.description = description;
-
-    console.log(tempEvent, " <- temp event filter");
-    const event = await Event.findOne(tempEvent);
+    const event = await eventModel.findOne(filter);
 
     // If no event is found, return 404
     if (!event) return res.status(404).json({ message: "Event not found" });
 
-    res.json(event);
-
+    // Ako React ocekuje array, vrati ga kao array
+    res.json([event]);
   }
 
   catch (err) {
