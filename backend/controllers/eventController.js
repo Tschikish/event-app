@@ -80,9 +80,10 @@ export async function fetchEvent(req, res) {
   
   try {
     const {title, location, description} = req.query;
+    console.log("Query params:", req.query);
 
     const filter = {};
-    filter.title = "Burekdzijada"; // Default title to search for
+    if (title) filter.title = title;
     if (location) filter.location = location;
     if (description) filter.description = description;
 
@@ -106,15 +107,23 @@ export async function fetchEvent(req, res) {
 export async function fetchEvents(req, res) {
   
   try {
+    const {title, location, description} = req.query;
+    console.log("Query params:", req.query);
 
-    console.log(mongoose.connection.name, " <- DB name");
+    const filter = {};
+    if (title) filter.title = title;
+    if (location) filter.location = location;
+    if (description) filter.description = description;
 
-    event.deleteOne().then(() => console.log('Event deleted'))
-         .catch(err => console.error('Error deleting event:', err));
+    console.log(filter, " <- filter object");
 
-    //if (!user) return res.status(404).json({ message: "User not found" });
+    const event = await eventModel.find(filter);
 
-    res.json("Event deleted");
+    // If no event is found, return 404
+    if (!event) return res.status(404).json({ message: "Event not found" });
+
+    // Ako React ocekuje array, vrati ga kao array
+    res.json([event]);
   }
 
   catch (err) {

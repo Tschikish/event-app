@@ -1,11 +1,12 @@
 import express from "express";
-import { fetchEvent, fetchAllEvents,  pushEvent, pushMultipleEvents, postDefaultEvent } from "../controllers/eventController.js";
+import { fetchEvent, fetchAllEvents,  pushEvent, pushMultipleEvents, postDefaultEvent, fetchEvents } from "../controllers/eventController.js";
 import { deleteEvent, clearEventBase } from "../controllers/eventController.js";
 
 const router = express.Router();
 
 //Fetch
 router.get("/getone", fetchEvent);
+router.get("getmultiple", fetchEvents);
 router.get("/all", fetchAllEvents);
 
 //push
