@@ -36,9 +36,9 @@ function EventsPage() {
       console.log(e2.message);
     }
   };
-  useEffect(() => {
-    getAllEvents();
-  }, []);
+  // useEffect(() => {
+  //   getAllEvents();
+  // }, []);
 
   return (
     <div>
